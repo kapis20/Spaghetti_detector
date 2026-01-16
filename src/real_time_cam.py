@@ -1,9 +1,11 @@
 import cv2
 from ultralytics import YOLO
+from pathlib import Path
 
-# Load your YOLO model
-model = YOLO('/home/kapis20/Projects/3D/3D/runs/detect/train2/weights/best.pt')
-
+# Repo root = parent of /src
+ROOT = Path(__file__).resolve().parents[1]
+MODEL_PATH = ROOT / "models" / "spaghetti_best.pt"
+model = YOLO(str(MODEL_PATH))
 # Start capturing video from the default camera (0)
 cap = cv2.VideoCapture(0)
 

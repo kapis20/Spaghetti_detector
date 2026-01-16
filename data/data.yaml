@@ -1,6 +1,8 @@
-train: ../train/images
-val: ../valid/images
-test: ..test/images
+path: data/dataset
+train: train
+val: val
+test: test
+
 #number of classes 
 nc: 2
 names: ['printer-gantry', 'spaghetti']

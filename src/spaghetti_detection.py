@@ -1,5 +1,10 @@
 from ultralytics import YOLO
+from pathlib import Path
 
+# Repo root = parent of /src
+ROOT = Path(__file__).resolve().parents[1]
+MODEL_PATH = ROOT / "models" / "spaghetti_best.pt"
+DATA_PATH = ROOT / "data" / "data.yaml"
 
 #model = YOLO("yolov8n.yaml")  # build a new model from scratch
 
@@ -16,8 +21,8 @@ from ultralytics import YOLO
 # )
 
 # Evaluate the trained model on the validation set
-model = YOLO('/home/kapis20/Projects/3D/3D/runs/detect/train2/weights/best.pt')
-metrics = model.val()
+model = YOLO(str(MODEL_PATH))
+metrics = model.val(data=str(DATA_PATH)) # Evaluate on validation data
 
 # Print evaluation results
 print(metrics)
@@ -25,3 +30,5 @@ print(f"mAP50-95: {metrics.box.map:.3f}")      # mAP50-95
 print(f"mAP50: {metrics.box.map50:.3f}")       # mAP50
 print(f"Precision: {metrics.box.precision:.3f}")  # Precision
 print(f"Recall: {metrics.box.recall:.3f}")        # Recall
+
+ 
